@@ -11,6 +11,9 @@ namespace CSExampleOverride
         {
             Student student = new Student("Andrew", "Eberle");
             System.Console.WriteLine(student.GetFullName);
+
+            Teacher teacher = new Teacher("Harry", "James");
+            System.Console.WriteLine(teacher.GetFullName);
         }
     }
     class Student 
@@ -22,21 +25,28 @@ namespace CSExampleOverride
             this.FirstName = fn;
             this.LastName = ln;
         }
-        public string GetFullName
+        // for at du kan overskrive en nedarvet funktion skal den have virtuel nøgleordet.
+        public virtual string GetFullName
         {
             get
             {
                 return "Studen's Name: " + this.FirstName + " " + this.LastName;
             }
         }
-        class Teacher : Student
+    }
+    class Teacher : Student
+    {
+        public Teacher(string fn, string ln) : base (fn, ln)
         {
-            public Teacher(string fn, string ln) 
+            this.FirstName = fn;
+            this.LastName = ln;
+        }
+        public override string GetFullName
+        {
+            get
             {
-                this.FirstName = fn;
-                this.LastName = ln;
+                return "Teacher's Name: " + this.FirstName + " " + this.LastName;
             }
         }
     }
-
 }
